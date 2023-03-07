@@ -1,7 +1,7 @@
 package com.reddit.clone.controller;
 
 import com.reddit.clone.dto.SubredditDto;
-import com.reddit.clone.security.SubredditService;
+import com.reddit.clone.service.SubredditService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,6 +26,11 @@ public class SubredditController {
     @GetMapping
     public ResponseEntity<List<SubredditDto>> getAllSubreddits(){
         return ResponseEntity.status(HttpStatus.OK).body(subredditService.getAll());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<SubredditDto> getSubreddit(@PathVariable Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(subredditService.getSubreddit(id));
     }
 
 }
