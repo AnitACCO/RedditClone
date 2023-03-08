@@ -2,6 +2,7 @@ package com.reddit.clone.service;
 
 import com.reddit.clone.dto.AuthenticationResponse;
 import com.reddit.clone.dto.LoginRequest;
+import com.reddit.clone.dto.RefreshTokenRequest;
 import com.reddit.clone.dto.RegisterRequest;
 import com.reddit.clone.exception.SpringRedditException;
 import com.reddit.clone.model.NotificationEmail;
@@ -30,16 +31,12 @@ import java.util.UUID;
 public class AuthService {
 
     private final PasswordEncoder passwordEncoder;
-
     private final UserRepository userRepository;
-
     private final VerificationTokenRepository verificationTokenRepository;
-
     private final MailService mailService;
-
     private final AuthenticationManager authenticationManager;
-
     private final JwtProvider jwtProvider;
+    private final RefreshTokenService refreshTokenService;
 
     @Transactional
     public void signup(RegisterRequest registerRequest){
@@ -86,14 +83,29 @@ public class AuthService {
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         String token = jwtProvider.generateToken(authenticate);
-        return new AuthenticationResponse(token, loginRequest.getUsername());
+        return AuthenticationResponse.builder()
+                .authenticationToken(token)
+                .refreshToken(refreshTokenService.generateRefreshToken().getToken())
+                .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
+                .username(loginRequest.getUsername())
+                .build();
     }
-
     @Transactional(readOnly = true)
     public User getCurrentUser() {
         Jwt principal = (Jwt) SecurityContextHolder.
                 getContext().getAuthentication().getPrincipal();
         return userRepository.findByUsername(principal.getSubject())
                 .orElseThrow(() -> new UsernameNotFoundException("User name not found - " + principal.getSubject()));
+    }
+
+    public AuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
+        refreshTokenService.validateRefreshToken(refreshTokenRequest.getRefreshToken());
+        String token = jwtProvider.generateTokenWithUserName(refreshTokenRequest.getUsername());
+        return AuthenticationResponse.builder()
+                .authenticationToken(token)
+                .refreshToken(refreshTokenRequest.getRefreshToken())
+                .expiresAt(Instant.now().plusMillis(jwtProvider.getJwtExpirationInMillis()))
+                .username(refreshTokenRequest.getUsername())
+                .build();
     }
 }
