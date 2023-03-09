@@ -46,7 +46,7 @@ public class SecurityConfig{
                                 .permitAll()
                                 .antMatchers(HttpMethod.GET, "/api/subreddit")
                                 .permitAll()
-                                .antMatchers(HttpMethod.GET, "/api/posts/")
+                                .antMatchers(HttpMethod.GET, "/api/posts")
                                 .permitAll()
                                 .antMatchers(HttpMethod.GET, "/api/posts/**")
                                 .permitAll()

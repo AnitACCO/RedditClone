@@ -1,14 +1,14 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
 
 .login,
 .sign-up {
-  background-color: #0079D3;
-  border-color: #0079D3;
+  background-color: #FF4500;
+  border-color: #FF4500;
   color: aliceblue;
-  fill: #0079D3;
+  fill: #FF4500;
   border: 1px solid;
   border-radius: 4px;
   text-align: center;
@@ -21,8 +21,23 @@ input.ng-invalid.ng-touched {
   text-transform: uppercase;
   padding: 3px 16px;
   opacity: 1;
-  height: 20px;
+  height: 30px;
+  margin-left: 20px;
 }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+#toast-container > div {
+  opacity: 1;
+}
+.toast {
+  font-size: initial !important;
+  border: initial !important;
+  backdrop-filter: blur(0) !important;
+}
+.toast-success {
+  background-color: #51A351 !important;
+}
+.toast-error {
+  background-color: #BD362F !important;
+}

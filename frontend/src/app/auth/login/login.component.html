@@ -1,4 +1,10 @@
 <div class="signup-form" >
+  <div class="login-failed" *ngIf="this.isError">
+    <p class="dangr">Login Failed please Check your credentials </p>
+  </div>
+  <div class="login-failed" [ngStyle]="{'background-color': 'green'}" *ngIf="this.registerSuccessMessage.length > 0">
+    <p class="register-success-text">{{registerSuccessMessage}}</p>
+  </div>
   <form [formGroup]='loginForm' (ngSubmit)="login()">
   <h2>Create Account</h2>
   <div class="form-group">
