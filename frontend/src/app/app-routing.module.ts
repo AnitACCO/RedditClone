@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { HomeComponent } from './home/home.component';
 import { PostCreateComponent } from './post/post-create/post-create.component';
 import { ViewPostComponent } from './post/view-post/view-post.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path : 'view-posts/:id',
     component: ViewPostComponent
+  },
+  {
+    path : 'user-profile/:name',
+    component : UserProfileComponent
   }
 ];
 

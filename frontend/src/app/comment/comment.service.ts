@@ -8,6 +8,7 @@ import { CommentPayload } from './comment.payload';
 })
 export class CommentService {
 
+
   constructor(private httpClient: HttpClient) { }
 
   postComment(commentPayload: CommentPayload): Observable<any> {
@@ -18,4 +19,7 @@ export class CommentService {
     return this.httpClient.get<CommentPayload[]>('http://localhost:8080/api/comments/by-post/' + postId);
   }
 
+  getAllCommentsByUser(name: string) : Observable<CommentPayload[]>{
+    return this.httpClient.get<CommentPayload[]>('http://localhost:8080/api/comments/by-user/' + name)
+  }
 }

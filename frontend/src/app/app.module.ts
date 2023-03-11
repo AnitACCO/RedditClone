@@ -40,6 +40,7 @@ import { TokenInterceptor } from './token-interceptor';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ViewPostComponent } from './post/view-post/view-post.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
     SubredditCreateComponent,
     ListSubredditComponent,
     ViewPostComponent,
-    UserProfileComponent
+    UserProfileComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,8 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
     MatSortModule,
     DragDropModule,
     FontAwesomeModule,
-    EditorModule
+    EditorModule,
+    NgbModule
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
