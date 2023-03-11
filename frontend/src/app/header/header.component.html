@@ -1,4 +1,4 @@
-<header>
+<header style="margin-bottom: 5%;">
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div class="flex-grow-1">
           <a aria-label="Home" class="logo" routerLink="/">
@@ -15,7 +15,7 @@
               </span>
           </a>
       </div>
-      <div class="flex-grow-1 float-right">
+      <div class="flex-grow float-right" style="margin-right:7% ;">
           <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                   <button (click)="goToUserProfile()" ngbDropdownItem>Profile</button>

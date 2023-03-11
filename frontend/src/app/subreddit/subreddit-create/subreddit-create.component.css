@@ -22,10 +22,10 @@
 }
 
 .btnCreateSubreddit {
-  background-color: #0079D3;
-  border-color: #0079D3;
+  background-color: #FF4500;
+  border-color: #FF4500;
   color: aliceblue;
-  fill: #0079D3;
+  fill: #FF4500;
   border: 1px solid;
   border-radius: 4px;
   text-align: center;
@@ -43,7 +43,7 @@
 }
 
 .btnDiscard {
-  fill: #0079D3;
+  fill: #FF4500;
   border: 1px solid;
   border-radius: 4px;
   text-align: center;
@@ -59,7 +59,7 @@
   width: 288px;
   height: 34px;
   margin-top: 5px;
-  color: #0079D3;
+  color: #FF4500;
   background-color: transparent;
 }
 

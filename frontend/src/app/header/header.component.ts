@@ -10,17 +10,19 @@ import { AuthService } from '../auth/shared/auth.service';
 })
 export class HeaderComponent implements OnInit {
 logout() {
-throw new Error('Method not implemented.');
+  this.authService.logout();
+  this.isLoggedIn = false;
+  this.router.navigateByUrl('')
 }
   faUser = faUser;
-  isLoggedIn: boolean = false;
+  isLoggedIn!: boolean ;
   username: string = '';
 
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.username = this.authService.getUserName();
+    this.authService.username.subscribe((data: string) => this.username = data);
   }
 
   goToUserProfile() {
