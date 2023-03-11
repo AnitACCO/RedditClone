@@ -18,7 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -33,6 +33,13 @@ import { PostTitleComponent } from './shared/post-title/post-title.component';
 import { VoteButtonComponent } from './shared/vote-button/vote-button.component';
 import { SideBarComponent } from './shared/side-bar/side-bar.component';
 import { SubredditSideBarComponent } from './shared/subreddit-side-bar/subreddit-side-bar.component';
+import { PostCreateComponent } from './post/post-create/post-create.component';
+import { SubredditCreateComponent } from './subreddit/subreddit-create/subreddit-create.component';
+import { ListSubredditComponent } from './subreddit/list-subreddit/list-subreddit.component';
+import { TokenInterceptor } from './token-interceptor';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { ViewPostComponent } from './post/view-post/view-post.component';
+import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +51,13 @@ import { SubredditSideBarComponent } from './shared/subreddit-side-bar/subreddit
     PostTitleComponent,
     VoteButtonComponent,
     SideBarComponent,
-    SubredditSideBarComponent
-],
+    SubredditSideBarComponent,
+    PostCreateComponent,
+    SubredditCreateComponent,
+    ListSubredditComponent,
+    ViewPostComponent,
+    UserProfileComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -70,10 +82,16 @@ import { SubredditSideBarComponent } from './shared/subreddit-side-bar/subreddit
     MatPaginatorModule,
     MatSortModule,
     DragDropModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    EditorModule
   ],
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

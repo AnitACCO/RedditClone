@@ -1,4 +1,4 @@
-<div *ngFor="let post of posts$" >
+<div *ngFor="let post of posts" >
   <div class="card mb-3" style="width: 90%; margin-left: 10%;">
     <div class="row g-0">
       <app-vote-button [post] = "post.voteCount" class="col-md-1" ></app-vote-button>
@@ -13,13 +13,13 @@
           </div>
           <div class="card-body">
             <p class="card-text"><a class="postname" href="{{post.url}}">{{post.postName}}</a></p>
-            <h5 class="card-title">{{post.description}}</h5>
+            <h5 class="card-title" [innerHTML]="post.description"></h5>
             <span>
               <a class="btnCommments" role="button">
                 <fa-icon [icon]="faComments"></fa-icon>
                 Comments({{post.commentCount}})
               </a>
-              <button class="login" >
+              <button class="login" (click)="goToPost(post.id)">
                 Read Post
               </button>
             </span>

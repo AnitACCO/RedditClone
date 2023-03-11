@@ -45,7 +45,7 @@ export class LoginComponent {
 
     this.authService.login(this.loginRequest).subscribe(data => {
       this.isError = false;
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/');
       this.toastr.success('Login Successful');
     }, error => {
       this.isError = true;

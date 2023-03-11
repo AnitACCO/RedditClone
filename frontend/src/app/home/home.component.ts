@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { faUps } from '@fortawesome/free-brands-svg-icons';
-import { faSquareCaretUp } from '@fortawesome/free-regular-svg-icons';
-import { faArrowDown, faArrowUp, faComments } from '@fortawesome/free-solid-svg-icons';
-import { PostModel } from '../shared/post-model';
 import { PostService } from '../shared/post.service';
+import { PostModel } from '../shared/post-model';
 
 @Component({
   selector: 'app-home',
@@ -11,4 +8,14 @@ import { PostService } from '../shared/post.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
- }
+
+  posts : PostModel[] = []
+
+  constructor(private postService : PostService){
+    this.postService.getAllPosts().subscribe(post => {
+      this.posts = post;
+      console.log(this.posts)
+    });
+  }
+
+}
