@@ -46,6 +46,7 @@ public class VoteService {
         return Vote.builder()
                 .voteType(voteDto.getVoteType())
                 .post(post)
+                .user(authService.getCurrentUser())
                 .build();
     }
 

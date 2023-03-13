@@ -41,6 +41,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { ViewPostComponent } from './post/view-post/view-post.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxCursorModule } from 'ngx-cursor';
+
 
 @NgModule({
   declarations: [
@@ -86,7 +88,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DragDropModule,
     FontAwesomeModule,
     EditorModule,
-    NgbModule
+    NgbModule,
+    NgxCursorModule
+
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},

@@ -16,7 +16,7 @@ export class ViewPostComponent implements OnInit  {
 
   postId: number;
   post : PostModel = {
-    id: 0,
+    id: this.activateRoute.snapshot.params['id'],
     postName: '',
     url: '',
     description: '',
@@ -26,7 +26,7 @@ export class ViewPostComponent implements OnInit  {
     commentCount: 0,
     duration: '',
     upVote: false,
-    downVote: false,
+    downVote: false
   };
 
   commentForm: FormGroup

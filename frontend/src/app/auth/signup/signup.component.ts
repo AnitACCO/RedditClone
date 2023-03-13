@@ -24,7 +24,7 @@ export class SignupComponent {
     }
     this.signupForm = new FormGroup({
       username: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@accolitedigital.com")]),
       password: new FormControl('', Validators.required),
     });
   }
